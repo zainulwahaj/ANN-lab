@@ -10,16 +10,20 @@ Lab work for the **Artificial Neural Networks** course.
 
 ---
 
+## Labs
+
+| # | Lab | Notebook |
+|---|-----|----------|
+| 01 | Python Fundamentals | [`Lab01_Python_Fundamentals.ipynb`](Lab01_Python_Fundamentals.ipynb) |
+| 02 | NumPy Essentials | [`Lab02_NumPy_Essentials.ipynb`](Lab02_NumPy_Essentials.ipynb) |
+
+Every lab is a fully executed Jupyter notebook. Each lettered part is solved in its own
+code cell, directly under the question it answers, with its output saved — so the results
+are visible on GitHub without running anything.
+
+---
+
 ## Lab 01 — Python Fundamentals
-
-[`Lab01_Python_Fundamentals.ipynb`](Lab01_Python_Fundamentals.ipynb)
-
-A complete, fully executed solution to all **9 tasks (36 parts)** of Lab 01. Every
-lettered part is solved in its own code cell, placed directly under the question it
-answers, with its output saved in the notebook — so the results are visible on GitHub
-without running anything.
-
-### Tasks
 
 | # | Task | Topics Covered |
 |---|------|----------------|
@@ -33,30 +37,48 @@ without running anything.
 | 8 | Functions — Basics | Functions |
 | 9 | Classes and Inheritance | Classes (OOP basics) |
 
-### Topics covered
+Covers variables and operators, the core built-in containers and how mutability differs
+between them, indexing and slicing, string handling, conditionals and loops, functions
+with default arguments and reference semantics, and object-oriented programming with
+inheritance and method overriding.
 
-- Variables, data types and the assignment/comparison operators, including swapping
-  values through tuple unpacking.
-- The core built-in containers — lists, tuples and dictionaries — and how mutability
-  differs between them.
-- Indexing and slicing, including step slicing and reversal.
-- String splitting, f-string formatting, and character-level iteration.
-- Flow control with conditionals, nested conditions, and loops using `break` and
-  `continue`.
-- Functions with default arguments, return values, and the reference semantics of
-  mutable arguments.
-- Object-oriented programming: constructors, methods, inheritance via `super()`, and
-  method overriding.
+## Lab 02 — NumPy Essentials
 
-### Running it
+| # | Task | Topics Covered |
+|---|------|----------------|
+| 1 | Vectors | 1-D arrays, shape, dtype, broadcasting |
+| 2 | Matrices | 2-D arrays, `zeros_like()`, row assignment |
+| 3 | Addition & Subtraction | Element-wise arithmetic, `sum(axis=)`, `argmax()` |
+| 4 | Dot Product | `np.dot()`, shape alignment rules |
+| 5 | Reshaping | `reshape()`, valid vs invalid shapes |
+| 6 | Indexing | Element access, negative indexing, in-place updates |
+| 7 | Slicing | Sub-matrices, step slicing |
+| 8 | Random Matrices | Seeding, `rand()`, `randint()`, `randn()` |
+| 9 | Transpose | `.T`, shape verification, enabling a dot product |
 
-The notebook uses only the Python standard library — no third-party packages are needed.
+Covers vector and matrix creation, element-wise arithmetic, dot products and why array
+shapes have to align, reshaping rules, indexing and slicing of sub-matrices, reproducible
+random generation with seeds, and transposition.
+
+Random results are seeded so the saved outputs reproduce exactly on a re-run.
+
+---
+
+## Requirements
+
+Lab 01 uses only the Python standard library. Lab 02 additionally needs NumPy:
+
+```bash
+pip install numpy
+```
+
+## Running
 
 ```bash
 git clone https://github.com/zainulwahaj/ANN-lab.git
 cd ANN-lab
-jupyter notebook Lab01_Python_Fundamentals.ipynb
+jupyter notebook
 ```
 
-Then run all cells with **Cell → Run All**, or just open the file on GitHub to read the
-saved outputs.
+Open either notebook and run all cells with **Cell → Run All**, or read the saved outputs
+straight from GitHub.
