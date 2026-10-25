@@ -18,6 +18,7 @@ Lab work for the **Artificial Neural Networks** course.
 | 02 | NumPy Essentials | [`Lab02_NumPy_Essentials.ipynb`](Lab02_NumPy_Essentials.ipynb) |
 | 03 | Perceptron and Weight Initialization | [`Lab03_Perceptron_and_Weight_Initialization.ipynb`](Lab03_Perceptron_and_Weight_Initialization.ipynb) |
 | 04 | Self-Organizing Map (SOM) | [`Lab04_Self_Organizing_Map.ipynb`](Lab04_Self_Organizing_Map.ipynb) |
+| 05 | Learning Vector Quantization (LVQ) | [`Lab05_Learning_Vector_Quantization.ipynb`](Lab05_Learning_Vector_Quantization.ipynb) |
 
 Every lab is a fully executed Jupyter notebook. Each lettered part is solved in its own
 code cell, directly under the question it answers, with its output saved — so the results
@@ -124,6 +125,46 @@ separate groups.
 
 ---
 
+---
+
+## Lab 05 - Learning Vector Quantization (LVQ)
+
+| # | Task | Topics Covered |
+|---|------|----------------|
+| 1 | The LVQ Algorithm from the Lab Manual | The manual's solved activity, run and debugged |
+| 2 | Dataset Loading and Preprocessing | Wine (UCI), stratified split, `StandardScaler` |
+| 3 | Distance and the Winning Prototype | `euclidean_distance()`, `find_winner()`, checked against a plain loop |
+| 4 | Prototype Initialization | First-sample, class-mean and random-per-class schemes on a PCA plot |
+| 5 | The LVQ1 Update Rule | Reward and punish, step size against alpha, movement traced in 2-D |
+| 6 | Training Loop | `train_lvq()` with linear learning-rate decay and per-epoch shuffling |
+| 7 | Classification and Evaluation | Accuracy, classification report, confusion matrix, 1-NN baseline |
+| 8 | Hyperparameter Experiments | Learning rate, epochs, prototypes per class, and a grid heatmap |
+| 9 | Mini Project with Your Own Data | UCI Handwritten Digits, prototypes shown as images, summary report |
+
+LVQ written from scratch with NumPy. Prototype vectors compete to be nearest to each
+training sample; the winner is pulled towards the sample when their labels agree and
+pushed away when they do not, with the learning rate decaying to zero over training.
+
+**Datasets.** Wine for Tasks 2-8 and Optical Recognition of Handwritten Digits for
+Task 9, both from the UCI ML Repository and bundled with scikit-learn, so the notebook
+runs offline and reproduces exactly.
+
+**A note on the lab manual's listing.** The solved activity printed in the manual does
+not run. Task 1 reproduces it with three bugs fixed. `winner()` compares `D0 > D1` and
+so returns the *farther* prototype. `update()` tests `if actual -- j:`, which is two
+unary minus signs rather than a comparison, and refers to a lower-case `j` that is never
+defined. The update loop runs over `range(len(weights))`, the number of prototypes,
+instead of the number of features, so two of the four weights never move. Each fix is
+explained in the cell next to it.
+
+**Headline result.** On Wine, three prototypes - one per class - reach 94.44% test
+accuracy against 96.30% for 1-NN, while storing 3 vectors instead of 124. The
+hyperparameter grid in Task 8 peaks at 100% with 3 prototypes per class at alpha 0.3. On
+Digits, 30 prototypes reach 96.30% against 98.89% for 1-NN while storing 42x less.
+Trading a couple of points of accuracy for a 40x smaller model is the whole argument for
+LVQ, and because every prototype is a point in the original feature space, the Digits
+prototypes fold back into 8x8 images and read as averaged handwritten digits.
+
 ## Requirements
 
 | Lab | Needs |
@@ -132,6 +173,7 @@ separate groups.
 | 02 | NumPy |
 | 03 | NumPy, Matplotlib, scikit-learn, pandas |
 | 04 | NumPy, Matplotlib |
+| 05 | NumPy, Matplotlib, scikit-learn |
 
 ```bash
 pip install numpy matplotlib scikit-learn pandas
