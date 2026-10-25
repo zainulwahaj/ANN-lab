@@ -17,6 +17,7 @@ Lab work for the **Artificial Neural Networks** course.
 | 01 | Python Fundamentals | [`Lab01_Python_Fundamentals.ipynb`](Lab01_Python_Fundamentals.ipynb) |
 | 02 | NumPy Essentials | [`Lab02_NumPy_Essentials.ipynb`](Lab02_NumPy_Essentials.ipynb) |
 | 03 | Perceptron and Weight Initialization | [`Lab03_Perceptron_and_Weight_Initialization.ipynb`](Lab03_Perceptron_and_Weight_Initialization.ipynb) |
+| 04 | Self-Organizing Map (SOM) | [`Lab04_Self_Organizing_Map.ipynb`](Lab04_Self_Organizing_Map.ipynb) |
 
 Every lab is a fully executed Jupyter notebook. Each lettered part is solved in its own
 code cell, directly under the question it answers, with its output saved — so the results
@@ -96,6 +97,33 @@ accurate than another on this problem.
 
 ---
 
+## Lab 04 — Self-Organizing Map (SOM)
+
+| # | Task | Topics Covered |
+|---|------|----------------|
+| 1 | Data and Weight Setup | 200 random colours, 10 x 10 grid of 3-value weight vectors, `plt.imshow()` |
+| 2 | Distance Calculation | `euclidean_distance()`, vectorized distance to every neuron (no loops) |
+| 3 | Finding the Winner (BMU) | `find_bmu()`, marking the BMU, hit map of all samples |
+| 4 | Neighborhood Function | Gaussian and bubble neighbourhoods for different radii |
+| 5 | One Weight Update Step | `update_weights()`, before/after maps, change in weights |
+| 6 | Training Loop | `train_som()` with exponentially decaying learning rate and radius |
+| 7 | Measuring Training Quality | Quantization error recorded during training |
+| 8 | Parameter Experiments | Iterations, grid size and learning rate compared |
+| 9 | Mini Project with Your Own Data | Red / green / blue clusters, grouping samples by BMU |
+
+A SOM written from scratch with NumPy: find the best matching unit for a random colour, pull
+it and its neighbours towards the colour, and shrink the learning rate and neighbourhood
+radius as training goes on. The trained 10 x 10 map turns random noise into smooth colour
+gradients. `task6_result.png` (initial vs trained map) is saved by the notebook.
+
+**A note on quantization error.** On the uniformly random colours of Tasks 1-8 the error
+*rises* slightly after training (0.066 to 0.088), because 100 random neurons already cover the
+RGB cube well and a SOM deliberately trades some accuracy for an ordered map. On the clustered
+red/green/blue data in Task 9 the error falls by about 95%, and the hit map shows three
+separate groups.
+
+---
+
 ## Requirements
 
 | Lab | Needs |
@@ -103,6 +131,7 @@ accurate than another on this problem.
 | 01 | Python standard library only |
 | 02 | NumPy |
 | 03 | NumPy, Matplotlib, scikit-learn, pandas |
+| 04 | NumPy, Matplotlib |
 
 ```bash
 pip install numpy matplotlib scikit-learn pandas
